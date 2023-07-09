@@ -3,6 +3,12 @@ import copy
 
 cache = {}
 def hardAI(board, ai_symbol):
+    """
+    An AI with hard level difficulty
+
+    The AI explores all possible moves and assigns scores to each move based on the minimax algorithm.
+    It chooses the move with the highest score as the best move to play.
+    """
     best_move = None
     best_score = None
 
@@ -20,6 +26,14 @@ def hardAI(board, ai_symbol):
     return best_move
 
 def minimax(board, symbol_to_play, ai_symbol):
+    """
+    Implements the minimax algorithm to determine the best move for the AI player.
+
+    The minimax algorithm recursively evaluates all possible moves and assigns scores based on the outcome of the game.
+    It assumes that both players play optimally and attempts to maximize the AI's score while minimizing the opponent's score.
+
+    The algorithm also incorporates caching which vastly improves processing speed.
+    """
     cache_key = str(board)
 
     if cache_key not in cache:
