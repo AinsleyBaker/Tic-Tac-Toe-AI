@@ -20,17 +20,17 @@ def hardAI(board, ai_symbol):
     return best_move
 
 def minimax(board, symbol_to_play, ai_symbol):
-    board_cache_key = str(board)
+    cache_key = str(board)
 
-    if board_cache_key not in cache:
+    if cache_key not in cache:
         winner = ttt.check_for_win(board)
         if winner is not None:
             if winner == ai_symbol:
-                cache[board_cache_key] = 10
+                cache[cache_key] = 10
             else:
-                cache[board_cache_key] = -10
+                cache[cache_key] = -10
         elif ttt.check_for_draw(board):
-            cache[board_cache_key] = 0
+            cache[cache_key] = 0
         else:
             legal_moves = ttt.get_legal_moves(board)
 
@@ -45,8 +45,8 @@ def minimax(board, symbol_to_play, ai_symbol):
                 scores.append(opp_best_score)
 
             if symbol_to_play == ai_symbol:
-                cache[board_cache_key] = max(scores)
+                cache[cache_key] = max(scores)
             else:
-                cache[board_cache_key] = min(scores)
+                cache[cache_key] = min(scores)
 
-    return cache[board_cache_key]
+    return cache[cache_key]
