@@ -3,12 +3,18 @@ import MediumAI as medium
 import HardAI as hard
 
 def reverse_symbol(symbol):
+    """
+    Reverses the symbol (X to 0 or 0 to X).
+    """
     if symbol == "X":
         return "0"
     else:
         return "X"
     
 def get_legal_moves(board):
+    """
+    Returns a list of legal moves on the board.
+    """
     legal_moves = []
     for index, square in enumerate(board):
         if square == "-":
@@ -16,11 +22,17 @@ def get_legal_moves(board):
     return legal_moves
 
 def random_move(board, symbol):
+    """
+    Returns a random legal move on the board.
+    """
     legal_moves = get_legal_moves(board)
     return random.choice(legal_moves)
 
 
 def check_for_win(board):
+    """
+    Check if either player has won the game.
+    """
     board_config = get_board_config()
     
     for line in board_config:
@@ -33,17 +45,26 @@ def check_for_win(board):
     return None
 
 def check_for_draw(board):
+    """
+    Checks if the game results in a draw.
+    """
     if "-" not in board:
         return True
     return False
 
 def get_board_config():
+    """
+    Returns a list of every possible winning line configuration.
+    """
     rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
     cols = [[0, 3, 6], [1,4,7], [2, 5, 8]]
     diags = [[0, 4, 8], [2, 4, 6]]
     return rows + cols + diags
 
 def new_board():
+    """
+    Creates a blank Tic-Tac-Toe board.
+    """
     blank_board = [
             '-', '-', '-',
             '-', '-', '-',
@@ -52,6 +73,9 @@ def new_board():
     return blank_board
     
 def show_board(board):
+    """
+    Prints the board in a more aesthetic manner
+    """
     print(board[0] + " | " + board[1] + " | " + board[2] + "          1 | 2 | 3") 
     print("---------          ---------")
     print(board[3] + " | " + board[4] + " | " + board[5] + "          4 | 5 | 6")
@@ -61,6 +85,9 @@ def show_board(board):
 
         
 def make_move(board, move, symbol):
+    """
+    Makes a move on the board with specified symbol.
+    """
     board[move-1] = symbol
     return board
     
